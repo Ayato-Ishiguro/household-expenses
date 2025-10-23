@@ -9,6 +9,14 @@ const en: Labels = {
         password: "Password",
         rememberMe: "Remember me",
     },
+    register: {
+        name: "Name",
+        email: "Email",
+        password: "Password",
+        passwordConfirmation: "Confirm Password",
+        alreadyRegistered: "Already registerd?",
+        register: "Register",
+    },
 };
 
 export default en;

@@ -9,6 +9,14 @@ const ja: Labels = {
         password: "パスワード",
         rememberMe: "ログイン状態を保持する",
     },
+    register: {
+        name: "名前",
+        email: "メールアドレス",
+        password: "パスワード",
+        passwordConfirmation: "パスワード（確認用）",
+        alreadyRegistered: "すでに登録済みですか？",
+        register: "登録",
+    },
 };
 
 export default ja;

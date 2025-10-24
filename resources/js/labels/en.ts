@@ -11,6 +11,8 @@ const en: Labels = {
     },
     register: {
         name: "Name",
+        lastName: "Last Name",
+        firstName: "First Name",
         email: "Email",
         password: "Password",
         passwordConfirmation: "Confirm Password",

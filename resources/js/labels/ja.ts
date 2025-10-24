@@ -11,6 +11,10 @@ const ja: Labels = {
     },
     register: {
         name: "名前",
+        lastName: "名前（姓）",
+        firstName: "名前（名）",
+        lastNameKana: "姓（カナ）",
+        firstNameKana: "名（カナ）",
         email: "メールアドレス",
         password: "パスワード",
         passwordConfirmation: "パスワード（確認用）",

@@ -15,6 +15,7 @@ class UserService implements UserServiceInterface
             'first_name' => $data['first_name'],
             'last_name_kana' => $data['last_name_kana'],
             'first_name_kana' => $data['first_name_kana'],
+            'name' => $data['last_name'] . ' ' . $data['first_name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password'])
         ]);

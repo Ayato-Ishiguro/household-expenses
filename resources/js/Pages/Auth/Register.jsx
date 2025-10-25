@@ -78,43 +78,47 @@ export default function Register() {
                     />
                 </div>
 
-                <div className="mt-4">
-                    <InputLabel
-                        htmlFor="lastNameKana"
-                        value={labels.register.firstNameKana}
-                    />
+                {lang === "ja" && (
+                    <>
+                        <div className="mt-4">
+                            <InputLabel
+                                htmlFor="lastNameKana"
+                                value={labels.register.firstNameKana}
+                            />
 
-                    <TextInput
-                        id="lastNameKana"
-                        name="lastNameKana"
-                        value={data.lastNameKana}
-                        className="mt-1 block w-full"
-                        autoComplete="lastNameKana"
-                        onChange={(e) =>
-                            setData("lastNameKana", e.target.value)
-                        }
-                        required
-                    />
-                </div>
+                            <TextInput
+                                id="lastNameKana"
+                                name="lastNameKana"
+                                value={data.lastNameKana}
+                                className="mt-1 block w-full"
+                                autoComplete="lastNameKana"
+                                onChange={(e) =>
+                                    setData("lastNameKana", e.target.value)
+                                }
+                                required
+                            />
+                        </div>
 
-                <div className="mt-4">
-                    <InputLabel
-                        htmlFor="firstNameKana"
-                        value={labels.register.firstNameKana}
-                    />
+                        <div className="mt-4">
+                            <InputLabel
+                                htmlFor="firstNameKana"
+                                value={labels.register.firstNameKana}
+                            />
 
-                    <TextInput
-                        id="firstNameKana"
-                        name="firstNameKana"
-                        value={data.firstNameKana}
-                        className="mt-1 block w-full"
-                        autoComplete="firstNameKana"
-                        onChange={(e) =>
-                            setData("firstNameKana", e.target.value)
-                        }
-                        required
-                    />
-                </div>
+                            <TextInput
+                                id="firstNameKana"
+                                name="firstNameKana"
+                                value={data.firstNameKana}
+                                className="mt-1 block w-full"
+                                autoComplete="firstNameKana"
+                                onChange={(e) =>
+                                    setData("firstNameKana", e.target.value)
+                                }
+                                required
+                            />
+                        </div>
+                    </>
+                )}
 
                 <div className="mt-4">
                     <InputLabel htmlFor="email" value={labels.register.email} />

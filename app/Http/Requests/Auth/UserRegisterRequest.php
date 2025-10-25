@@ -9,13 +9,19 @@ class UserRegisterRequest extends FormRequest
 {
     public function rules(): array
     {
-        return [
+        $rules = [
             'last_name' => ['required', 'string', 'max:255'],
             'first_name' => ['required', 'string', 'max:255'],
-            'last_name_kana' => ['required', 'string', 'max:255'],
-            'first_name_kana' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:users.email'],
             'password' => ['required', 'confirmed', new StrongPassword()]
         ];
+
+        // 日本語の時だけカナ欄をrequiredにする
+        if ($this->header('Accept-Language') && str_starts_with($this->header('Accept-Language'), 'ja')) {
+            $rules['last_name_kana'] = ['required', 'string', 'max:255'];
+            $rules['first_name_kana'] = ['required', 'string', 'max:255'];
+        }
+
+        return $rules;
     }
 }

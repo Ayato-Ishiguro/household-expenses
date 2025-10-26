@@ -15,7 +15,7 @@ const initialForm = {
     firstNameKana: "",
     email: "",
     password: "",
-    password_confirmation: "",
+    passwordConfirmation: "",
 };
 
 export default function Register() {
@@ -40,7 +40,7 @@ export default function Register() {
         if (Object.keys(validationErrors).length > 0) return;
 
         post(route("register"), {
-            onFinish: () => reset("password", "password_confirmation"),
+            onFinish: () => reset("password", "passwordConfirmation"),
         });
     };
 
@@ -69,7 +69,7 @@ export default function Register() {
                         />
                         <InputError
                             message={clientErrors.lastName}
-                            className="mt-2"
+                            className="mt-2 text-red-600"
                         />
                     </div>
                     <div className="flex-1">
@@ -87,6 +87,10 @@ export default function Register() {
                                 setData("firstName", e.target.value)
                             }
                             required
+                        />
+                        <InputError
+                            message={clientErrors.firstName}
+                            className="mt-2 text-red-600"
                         />
                     </div>
                 </div>
@@ -109,6 +113,10 @@ export default function Register() {
                                 }
                                 required
                             />
+                            <InputError
+                                message={clientErrors.lastNameKana}
+                                className="mt-2 text-red-600"
+                            />
                         </div>
                         <div className="flex-1">
                             <InputLabel
@@ -125,6 +133,10 @@ export default function Register() {
                                     setData("firstNameKana", e.target.value)
                                 }
                                 required
+                            />
+                            <InputError
+                                message={clientErrors.firstNameKana}
+                                className="mt-2 text-red-600"
                             />
                         </div>
                     </div>
@@ -144,7 +156,10 @@ export default function Register() {
                         required
                     />
 
-                    <InputError message={errors.email} className="mt-2" />
+                    <InputError
+                        message={clientErrors.email}
+                        className="mt-2 text-red-600"
+                    />
                 </div>
 
                 <div className="mt-4">
@@ -164,31 +179,34 @@ export default function Register() {
                         required
                     />
 
-                    <InputError message={errors.password} className="mt-2" />
+                    <InputError
+                        message={clientErrors.password}
+                        className="mt-2 text-red-600"
+                    />
                 </div>
 
                 <div className="mt-4">
                     <InputLabel
-                        htmlFor="password_confirmation"
+                        htmlFor="passwordConfirmation"
                         value={labels.register.passwordConfirmation}
                     />
 
                     <TextInput
-                        id="password_confirmation"
+                        id="passwordConfirmation"
                         type="password"
-                        name="password_confirmation"
-                        value={data.password_confirmation}
+                        name="passwordConfirmation"
+                        value={data.passwordConfirmation}
                         className="mt-1 block w-full"
                         autoComplete="new-password"
                         onChange={(e) =>
-                            setData("password_confirmation", e.target.value)
+                            setData("passwordConfirmation", e.target.value)
                         }
                         required
                     />
 
                     <InputError
-                        message={errors.password_confirmation}
-                        className="mt-2"
+                        message={clientErrors.passwordConfirmation}
+                        className="mt-2 text-red-600"
                     />
                 </div>
 

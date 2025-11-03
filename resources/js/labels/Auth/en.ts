@@ -16,7 +16,7 @@ const en: Labels = {
         email: "Email",
         password: "Password",
         passwordConfirmation: "Confirm Password",
-        alreadyRegistered: "Already registerd?",
+        alreadyRegistered: "Already registered?",
         register: "Register",
     },
 };

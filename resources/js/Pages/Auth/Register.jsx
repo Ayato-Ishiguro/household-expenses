@@ -45,7 +45,7 @@ export default function Register() {
         e.preventDefault();
         const validationErrors = validateRegisterForm(
             data,
-            labels.register.validations,
+            labels.register,
             lang
         );
         setClientErrors(validationErrors);

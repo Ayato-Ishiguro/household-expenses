@@ -12,7 +12,7 @@ class UserRegisterRequest extends FormRequest
         $rules = [
             'last_name' => ['required', 'string', 'max:255'],
             'first_name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:users.email'],
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:users,email'],
             'password' => ['required', 'confirmed', new StrongPassword()]
         ];
 
@@ -23,5 +23,16 @@ class UserRegisterRequest extends FormRequest
         }
 
         return $rules;
+    }
+
+    protected function prepareForValidation()
+    {
+        $this->merge([
+            'last_name' => $this->input('lastName'),
+            'first_name' => $this->input('firstName'),
+            'last_name_kana' => $this->input('lastNameKana'),
+            'first_name_kana' => $this->input('firstNameKana'),
+            'password_confirmation' => $this->input('passwordConfirmation'),
+        ]);
     }
 }

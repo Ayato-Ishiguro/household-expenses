@@ -4,9 +4,10 @@ import PrimaryButton from "@/Components/PrimaryButton";
 import TextInput from "@/Components/TextInput";
 import GuestLayout from "@/Layouts/GuestLayout";
 import { Head, Link, useForm } from "@inertiajs/react";
-import { labels } from "@/labels";
 import { useState } from "react";
 import { validateRegisterForm } from "@/validations/registerValidation";
+import ja from "@/labels/Auth/ja";
+import en from "@/labels/Auth/en";
 
 const initialForm = {
     lastName: "",
@@ -18,12 +19,23 @@ const initialForm = {
     passwordConfirmation: "",
 };
 
+const initialTouched = {
+    lastName: false,
+    firstName: false,
+    lastNameKana: false,
+    firstNameKana: false,
+    email: false,
+    password: false,
+    passwordConfirmation: false,
+};
+
 export default function Register() {
     const lang = navigator.language.startsWith("ja") ? "ja" : "en";
-    const { data, setData, post, processing, errors, reset } =
-        useForm(initialForm);
+    const labels = lang === "ja" ? ja : en;
 
+    const { data, setData, post, processing, reset } = useForm(initialForm);
     const [clientErrors, setClientErrors] = useState({});
+    const [touched, setTouched] = useState(initialTouched);
 
     const isFormValid =
         Object.values(data).every((v) => v && v.length > 0) &&
@@ -42,6 +54,16 @@ export default function Register() {
         post(route("register"), {
             onFinish: () => reset("password", "passwordConfirmation"),
         });
+    };
+
+    const handleBlur = (field) => {
+        setTouched((prev) => ({ ...prev, [field]: true }));
+        const validationErrors = validateRegisterForm(
+            data,
+            labels.register,
+            lang
+        );
+        setClientErrors(validationErrors);
     };
 
     return (
@@ -65,10 +87,13 @@ export default function Register() {
                             onChange={(e) =>
                                 setData("lastName", e.target.value)
                             }
+                            onBlur={() => handleBlur("lastName")}
                             required
                         />
                         <InputError
-                            message={clientErrors.lastName}
+                            message={
+                                touched.lastName ? clientErrors.lastName : ""
+                            }
                             className="mt-2 text-red-600"
                         />
                     </div>
@@ -86,10 +111,13 @@ export default function Register() {
                             onChange={(e) =>
                                 setData("firstName", e.target.value)
                             }
+                            onBlur={() => handleBlur("firstName")}
                             required
                         />
                         <InputError
-                            message={clientErrors.firstName}
+                            message={
+                                touched.firstName ? clientErrors.firstName : ""
+                            }
                             className="mt-2 text-red-600"
                         />
                     </div>
@@ -111,10 +139,15 @@ export default function Register() {
                                 onChange={(e) =>
                                     setData("lastNameKana", e.target.value)
                                 }
+                                onBlur={() => handleBlur("lastNameKana")}
                                 required
                             />
                             <InputError
-                                message={clientErrors.lastNameKana}
+                                message={
+                                    touched.lastNameKana
+                                        ? clientErrors.lastNameKana
+                                        : ""
+                                }
                                 className="mt-2 text-red-600"
                             />
                         </div>
@@ -132,10 +165,15 @@ export default function Register() {
                                 onChange={(e) =>
                                     setData("firstNameKana", e.target.value)
                                 }
+                                onBlur={() => handleBlur("firstNameKana")}
                                 required
                             />
                             <InputError
-                                message={clientErrors.firstNameKana}
+                                message={
+                                    touched.firstNameKana
+                                        ? clientErrors.firstNameKana
+                                        : ""
+                                }
                                 className="mt-2 text-red-600"
                             />
                         </div>
@@ -153,11 +191,12 @@ export default function Register() {
                         className="mt-1 block w-full"
                         autoComplete="username"
                         onChange={(e) => setData("email", e.target.value)}
+                        onBlur={() => handleBlur("email")}
                         required
                     />
 
                     <InputError
-                        message={clientErrors.email}
+                        message={touched.email ? clientErrors.email : ""}
                         className="mt-2 text-red-600"
                     />
                 </div>
@@ -176,11 +215,12 @@ export default function Register() {
                         className="mt-1 block w-full"
                         autoComplete="new-password"
                         onChange={(e) => setData("password", e.target.value)}
+                        onBlur={() => handleBlur("password")}
                         required
                     />
 
                     <InputError
-                        message={clientErrors.password}
+                        message={touched.password ? clientErrors.password : ""}
                         className="mt-2 text-red-600"
                     />
                 </div>
@@ -201,11 +241,16 @@ export default function Register() {
                         onChange={(e) =>
                             setData("passwordConfirmation", e.target.value)
                         }
+                        onBlur={() => handleBlur("passwordConfirmation")}
                         required
                     />
 
                     <InputError
-                        message={clientErrors.passwordConfirmation}
+                        message={
+                            touched.passwordConfirmation
+                                ? clientErrors.passwordConfirmation
+                                : ""
+                        }
                         className="mt-2 text-red-600"
                     />
                 </div>

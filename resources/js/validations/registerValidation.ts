@@ -1,3 +1,5 @@
+import { commonValidationsEn } from "@/labels/common/commonValidation.en";
+import { commonValidations } from "@/labels/common/commonValidation.ja";
 import { Labels } from "@/labels/types";
 
 export type RegisterForm = {
@@ -12,69 +14,91 @@ export type RegisterForm = {
 
 export type RegisterFormErrors = Partial<Record<keyof RegisterForm, string>>;
 
-type RegisterValidationsLabels = NonNullable<Labels["register"]>["validations"];
-
 const maxLength = (value: string | undefined, max: number) =>
     value !== undefined && value.length > max;
 
 const isKana = (value: string | undefined) =>
     value !== undefined && /^[ァ-ヶー　]+$/u.test(value);
 
+function getCommonValidations(lang: string) {
+    return lang === "ja" ? commonValidations : commonValidationsEn;
+}
+
 export function validateRegisterForm(
     data: RegisterForm,
-    labels: RegisterValidationsLabels,
+    labels: Labels["register"],
     lang: string = "ja"
 ): RegisterFormErrors {
     const errors: RegisterFormErrors = {};
-
+    const common = getCommonValidations(lang);
+    // 姓
     if (!data.lastName) {
-        errors.lastName = labels.lastNameRequired;
+        errors.lastName = common.required.replace("{field}", labels.lastName);
     }
     if (data.lastName && maxLength(data.lastName, 255)) {
-        errors.lastName = labels.lastNameMax;
+        errors.lastName = common.max.replace("{field}", labels.lastName);
     }
-
+    // 名
     if (!data.firstName) {
-        errors.firstName = labels.firstNameRequired;
+        errors.firstName = common.required.replace("{field}", labels.firstName);
     }
     if (data.firstName && maxLength(data.firstName, 255)) {
-        errors.firstName = labels.firstNameMax;
+        errors.firstName = common.max.replace("{field}", labels.firstName);
     }
-
+    // カナ（日本語のみ）
     if (lang === "ja") {
         if (!data.lastNameKana) {
-            errors.lastNameKana = labels.lastNameKanaRequired;
+            errors.lastNameKana = common.required.replace(
+                "{field}",
+                labels.lastNameKana ?? "姓（カナ）"
+            );
         }
         if (data.lastNameKana && maxLength(data.lastNameKana, 255)) {
-            errors.lastNameKana = labels.lastNameKanaMax;
+            errors.lastNameKana = common.max.replace(
+                "{field}",
+                labels.lastNameKana ?? "姓（カナ）"
+            );
         }
         if (data.lastNameKana && !isKana(data.lastNameKana)) {
-            errors.lastNameKana = labels.lastNameKanaFormat;
+            errors.lastNameKana = common.kanaFormat.replace(
+                "{field}",
+                labels.lastNameKana ?? "姓（カナ）"
+            );
         }
 
         if (!data.firstNameKana) {
-            errors.firstNameKana = labels.firstNameKanaRequired;
+            errors.firstNameKana = common.required.replace(
+                "{field}",
+                labels.firstNameKana ?? "名（カナ）"
+            );
         }
         if (data.firstNameKana && maxLength(data.firstNameKana, 255)) {
-            errors.firstNameKana = labels.firstNameKanaMax;
+            errors.firstNameKana = common.max.replace(
+                "{field}",
+                labels.firstNameKana ?? "名（カナ）"
+            );
         }
         if (data.firstNameKana && !isKana(data.firstNameKana)) {
-            errors.firstNameKana = labels.firstNameKanaFormat;
+            errors.firstNameKana = common.kanaFormat.replace(
+                "{field}",
+                labels.firstNameKana ?? "名（カナ）"
+            );
         }
     }
-
+    // メール
     if (!data.email) {
-        errors.email = labels.emailRequired;
+        errors.email = common.required.replace("{field}", labels.email);
     }
     if (data.email && !/^[\w\-.]+@[\w\-.]+\.[a-zA-Z]{2,}$/.test(data.email)) {
-        errors.email = labels.emailFormat;
+        errors.email = common.emailFormat;
     }
 
+    // パスワード
     if (!data.password) {
-        errors.password = labels.passwordRequired;
+        errors.password = common.required.replace("{field}", labels.password);
     }
     if (data.password !== data.passwordConfirmation) {
-        errors.passwordConfirmation = labels.passwordConfirmationNotMatch;
+        errors.passwordConfirmation = common.passwordConfirmationNotMatch;
     }
 
     return errors;

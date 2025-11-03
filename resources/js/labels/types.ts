@@ -1,5 +1,3 @@
-import { RegisterValidationsLabels } from "./Auth/RegisterValidationsLabels";
-
 export type Labels = {
     login: {
         login: string;
@@ -20,6 +18,5 @@ export type Labels = {
         passwordConfirmation: string;
         alreadyRegistered: string;
         register: string;
-        validations: RegisterValidationsLabels;
     };
 };

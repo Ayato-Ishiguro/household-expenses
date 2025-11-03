@@ -20,6 +20,12 @@ const maxLength = (value: string | undefined, max: number) =>
 const isKana = (value: string | undefined) =>
     value !== undefined && /^[ァ-ヶー　]+$/u.test(value);
 
+const isStrongPassword = (value: string | undefined) =>
+    value !== undefined &&
+    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_\-+=\[\]{};':"\\|,.<>\/?]).{8,}$/.test(
+        value
+    );
+
 function getCommonValidations(lang: string) {
     return lang === "ja" ? commonValidations : commonValidationsEn;
 }
@@ -96,6 +102,9 @@ export function validateRegisterForm(
     // パスワード
     if (!data.password) {
         errors.password = common.required.replace("{field}", labels.password);
+    }
+    if (data.password && !isStrongPassword(data.password)) {
+        errors.password = common.passwordStrong;
     }
     if (data.password !== data.passwordConfirmation) {
         errors.passwordConfirmation = common.passwordConfirmationNotMatch;

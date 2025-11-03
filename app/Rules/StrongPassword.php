@@ -9,7 +9,7 @@ class StrongPassword implements Rule
     public function passes($attribute, $value): bool|int
     {
         // 例: 8文字以上、英大文字・小文字・数字・記号を含む
-        return preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_].{8,})$/', $value);
+        return preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_\-+=\[\]{};\':"\\\\|,.<>\/\?]).{8,}$/', $value);
     }
 
     public function message(): string

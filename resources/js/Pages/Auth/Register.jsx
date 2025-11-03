@@ -38,7 +38,14 @@ export default function Register() {
     const [touched, setTouched] = useState(initialTouched);
 
     const isFormValid =
-        Object.values(data).every((v) => v && v.length > 0) &&
+        (
+            (lang === "ja"
+                ? Object.values(data).every((v) => v && v.length > 0)
+                : ["lastName", "firstName", "email", "password", "passwordConfirmation"].every(
+                      (field) => data[field] && data[field].length > 0
+                  )
+            )
+        ) &&
         Object.keys(clientErrors).length === 0;
 
     const submit = (e) => {

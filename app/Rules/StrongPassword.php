@@ -6,10 +6,10 @@ use Illuminate\Contracts\Validation\Rule;
 
 class StrongPassword implements Rule
 {
-    public function passes($attribute, $value): bool|int
+    public function passes($attribute, $value): bool
     {
-        // 例: 8文字以上、英大文字・小文字・数字・記号を含む
-        return preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_\-+=\[\]{};\':"\\\\|,.<>\/\?]).{8,}$/', $value);
+        // 8文字以上、英大文字・小文字・数字・記号を含む
+        return (bool) preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#^()_\-+=\[\]{}|;:,.<>\/]).{8,}$/', $value);
     }
 
     public function message(): string

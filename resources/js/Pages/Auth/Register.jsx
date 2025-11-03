@@ -37,9 +37,14 @@ export default function Register() {
     const [clientErrors, setClientErrors] = useState({});
     const [touched, setTouched] = useState(initialTouched);
 
-    const isFormValid =
-        Object.values(data).every((v) => v && v.length > 0) &&
-        Object.keys(clientErrors).length === 0;
+    const isFormValid = () => {
+        const requiredFields = ['lastName', 'firstName', 'email', 'password', 'passwordConfirmation'];
+        if (lang === 'ja') {
+            requiredFields.push('lastNameKana', 'firstNameKana');
+        }
+        const allRequiredFieldsFilled = requiredFields.every(field => data[field] && data[field].length > 0);
+        return allRequiredFieldsFilled && Object.keys(clientErrors).length === 0;
+    };
 
     const submit = (e) => {
         e.preventDefault();
@@ -60,7 +65,7 @@ export default function Register() {
         setTouched((prev) => ({ ...prev, [field]: true }));
         const validationErrors = validateRegisterForm(
             data,
-            labels.register,
+            labels.register.validations,
             lang
         );
         setClientErrors(validationErrors);
@@ -265,7 +270,7 @@ export default function Register() {
 
                     <PrimaryButton
                         className="ms-4"
-                        disabled={processing || !isFormValid}
+                        disabled={processing || !isFormValid()}
                     >
                         {labels.register.register}
                     </PrimaryButton>

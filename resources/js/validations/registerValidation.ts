@@ -95,7 +95,7 @@ export function validateRegisterForm(
     if (!data.email) {
         errors.email = common.required.replace("{field}", labels.email);
     }
-    if (data.email && !/^[\w\-.]+@[\w\-.]+\.[a-zA-Z]{2,}$/.test(data.email)) {
+    if (data.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) {
         errors.email = common.emailFormat;
     }
 

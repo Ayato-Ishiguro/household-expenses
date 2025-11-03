@@ -5,6 +5,7 @@ import PrimaryButton from "@/Components/PrimaryButton";
 import TextInput from "@/Components/TextInput";
 import GuestLayout from "@/Layouts/GuestLayout";
 import { Head, Link, useForm } from "@inertiajs/react";
+import { labels } from "@/labels";
 
 export default function Login({ status, canResetPassword }) {
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -33,7 +34,7 @@ export default function Login({ status, canResetPassword }) {
 
             <form onSubmit={submit}>
                 <div>
-                    <InputLabel htmlFor="email" value="Email" />
+                    <InputLabel htmlFor="email" value={labels.login.email} />
 
                     <TextInput
                         id="email"
@@ -50,7 +51,10 @@ export default function Login({ status, canResetPassword }) {
                 </div>
 
                 <div className="mt-4">
-                    <InputLabel htmlFor="password" value="Password" />
+                    <InputLabel
+                        htmlFor="password"
+                        value={labels.login.password}
+                    />
 
                     <TextInput
                         id="password"
@@ -75,7 +79,7 @@ export default function Login({ status, canResetPassword }) {
                             }
                         />
                         <span className="ms-2 text-sm text-gray-600">
-                            Remember me
+                            {labels.login.rememberMe}
                         </span>
                     </label>
                 </div>
@@ -86,12 +90,19 @@ export default function Login({ status, canResetPassword }) {
                             href={route("password.request")}
                             className="rounded-md text-sm text-gray-600 underline hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                         >
-                            Forgot your password?
+                            {labels.login.forgotPassword}
                         </Link>
                     )}
 
+                    <Link
+                        href={route("register")}
+                        className="rounded-md text-sm text-gray-600 underline hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 ms-4"
+                    >
+                        {labels.login.register}
+                    </Link>
+
                     <PrimaryButton className="ms-4" disabled={processing}>
-                        Log in
+                        {labels.login.login}
                     </PrimaryButton>
                 </div>
             </form>

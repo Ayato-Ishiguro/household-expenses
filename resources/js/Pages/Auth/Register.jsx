@@ -5,7 +5,7 @@ import TextInput from "@/Components/TextInput";
 import GuestLayout from "@/Layouts/GuestLayout";
 import { Head, Link, useForm } from "@inertiajs/react";
 import { useState } from "react";
-import { validateRegisterForm } from "@/validations/registerValidation";
+import { validateRegisterForm } from "@/validations/validators/registerValidation";
 import ja from "@/labels/Auth/ja";
 import en from "@/labels/Auth/en";
 
@@ -38,14 +38,15 @@ export default function Register() {
     const [touched, setTouched] = useState(initialTouched);
 
     const isFormValid =
-        (
-            (lang === "ja"
-                ? Object.values(data).every((v) => v && v.length > 0)
-                : ["lastName", "firstName", "email", "password", "passwordConfirmation"].every(
-                      (field) => data[field] && data[field].length > 0
-                  )
-            )
-        ) &&
+        (lang === "ja"
+            ? Object.values(data).every((v) => v && v.length > 0)
+            : [
+                  "lastName",
+                  "firstName",
+                  "email",
+                  "password",
+                  "passwordConfirmation",
+              ].every((field) => data[field] && data[field].length > 0)) &&
         Object.keys(clientErrors).length === 0;
 
     const submit = (e) => {

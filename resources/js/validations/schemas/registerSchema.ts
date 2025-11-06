@@ -1,7 +1,7 @@
 import { z } from "zod";
-import { Labels } from "@/labels/types";
-import { commonValidations } from "@/labels/common/commonValidation.ja";
-import { commonValidationsEn } from "@/labels/common/commonValidation.en";
+import { Labels } from "@/Labels/types";
+import { commonValidations } from "@/Labels/common/commonValidation.ja";
+import { commonValidationsEn } from "@/Labels/common/commonValidation.en";
 import { kanaRegex, emailRegex, strongPasswordRegex } from "../utils/regex";
 
 export type RegisterForm = {
@@ -57,7 +57,7 @@ export function getRegisterSchema(
                         labels.lastNameKana ?? "姓（カナ）"
                     ),
                 })
-                .refine((val) => kanaRegex.test(val), {
+                .refine((val) => val === "" || kanaRegex.test(val), {
                     message: common.kanaFormat.replace(
                         "{field}",
                         labels.lastNameKana ?? "姓（カナ）"
@@ -77,7 +77,7 @@ export function getRegisterSchema(
                         labels.firstNameKana ?? "名（カナ）"
                     ),
                 })
-                .refine((val) => kanaRegex.test(val), {
+                .refine((val) => val === "" || kanaRegex.test(val), {
                     message: common.kanaFormat.replace(
                         "{field}",
                         labels.firstNameKana ?? "名（カナ）"
@@ -97,13 +97,13 @@ export function getRegisterSchema(
                         labels.password
                     ),
                 })
-                .refine((val) => strongPasswordRegex.test(val), {
+                .refine((val) => val === "" || strongPasswordRegex.test(val), {
                     message: common.passwordStrong,
                 }),
             passwordConfirmation: z.string().min(1, {
                 message: common.required.replace(
                     "{field}",
-                    labels.passwordConfirmation ?? "パスワード（確認）"
+                    labels.passwordConfirmation
                 ),
             }),
         })

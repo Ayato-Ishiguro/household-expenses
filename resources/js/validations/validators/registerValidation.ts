@@ -1,6 +1,6 @@
-import { commonValidationsEn } from "@/labels/common/commonValidation.en";
-import { commonValidations } from "@/labels/common/commonValidation.ja";
-import { Labels } from "@/labels/types";
+import { commonValidationsEn } from "@/Labels/common/commonValidation.en";
+import { commonValidations } from "@/Labels/common/commonValidation.ja";
+import { Labels } from "@/Labels/types";
 
 export type RegisterForm = {
     lastName: string;

@@ -1,6 +1,11 @@
 {
-    "plugins": ["import"],
-    "extends": ["eslint:recommended", "plugin:import/typescript"],
+    "plugins": ["import", "@typescript-eslint"],
+    "extends": [
+        "eslint:recommended",
+        "plugin:import/typescript",
+        "plugin:@typescript-eslint/recommended"
+    ],
+    "parser": "@typescript-eslint/parser",
     "rules": {
         "import/order": [
             "error",
@@ -16,5 +21,10 @@
                 "alphabetize": { "order": "asc", "caseInsensitive": true }
             }
         ]
+    },
+    "settings": {
+        "import/resolver": {
+            "typescript": {}
+        }
     }
 }

@@ -39,7 +39,7 @@ export default function Register() {
     const [touched, setTouched] = useState(initialTouched);
 
     const validationErrors = validateRegisterForm(data, labels.register, lang);
-    const isFormValid = Object.keys(clientErrors).length === 0;
+    const isFormValid = Object.keys(validationErrors).length === 0;
 
     const submit = (e) => {
         e.preventDefault();

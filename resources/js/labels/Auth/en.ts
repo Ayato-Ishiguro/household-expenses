@@ -1,4 +1,4 @@
-import { Labels } from "../types";
+import { Labels } from "@/labels/types";
 
 const en: Labels = {
     login: {

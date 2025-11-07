@@ -1,5 +1,5 @@
-import en from "./auth/en";
-import ja from "./auth/ja";
+import en from "@/Labels/auth/en";
+import ja from "@/Labels/auth/ja";
 import { Labels } from "./types";
 
 const lang = navigator.language.startsWith("ja") ? "ja" : "en";

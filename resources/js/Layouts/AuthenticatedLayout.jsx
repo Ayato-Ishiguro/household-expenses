@@ -1,9 +1,9 @@
 import { Link, usePage } from "@inertiajs/react";
 import { useState } from "react";
-import ApplicationLogo from "resources/js/Components/ApplicationLogo";
-import Dropdown from "resources/js/Components/Dropdown";
-import NavLink from "resources/js/Components/NavLink";
-import ResponsiveNavLink from "resources/js/Components/ResponsiveNavLink";
+import ApplicationLogo from "@/components/ApplicationLogo";
+import Dropdown from "@/components/Dropdown";
+import NavLink from "@/components/NavLink";
+import ResponsiveNavLink from "@/components/ResponsiveNavLink";
 
 export default function AuthenticatedLayout({ header, children }) {
     const user = usePage().props.auth.user;

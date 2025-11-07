@@ -1,8 +1,8 @@
 import { Head, useForm } from "@inertiajs/react";
-import InputError from "resources/js/Components/InputError";
-import PrimaryButton from "resources/js/Components/PrimaryButton";
-import TextInput from "resources/js/Components/TextInput";
-import GuestLayout from "resources/js/Layouts/GuestLayout";
+import InputError from "@/components/InputError";
+import PrimaryButton from "@/components/PrimaryButton";
+import TextInput from "@/components/TextInput";
+import GuestLayout from "@/layouts/GuestLayout";
 
 export default function ForgotPassword({ status }) {
     const { data, setData, post, processing, errors } = useForm({

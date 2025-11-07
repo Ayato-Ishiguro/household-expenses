@@ -1,14 +1,14 @@
 import { Head, Link, useForm } from "@inertiajs/react";
 import { useState } from "react";
-import InfoTooltip from "resources/js/Components/common/InfoTooltip";
-import InputError from "resources/js/Components/InputError";
-import InputLabel from "resources/js/Components/InputLabel";
-import PrimaryButton from "resources/js/Components/PrimaryButton";
-import TextInput from "resources/js/Components/TextInput";
-import en from "resources/js/Labels/auth/en";
-import ja from "resources/js/Labels/auth/ja";
-import GuestLayout from "resources/js/Layouts/GuestLayout";
-import { validateRegisterForm } from "resources/js/Validations/validators/registerValidations";
+import InfoTooltip from "@/components/common/InfoTooltip";
+import InputError from "@/components/InputError";
+import InputLabel from "@/components/InputLabel";
+import PrimaryButton from "@/components/PrimaryButton";
+import TextInput from "@/components/TextInput";
+import en from "@/labels/auth/en";
+import ja from "@/labels/auth/ja";
+import GuestLayout from "@/layouts/GuestLayout";
+import { validateRegisterForm } from "@/validations/validators/registerValidations";
 
 const initialForm = {
     lastName: "",

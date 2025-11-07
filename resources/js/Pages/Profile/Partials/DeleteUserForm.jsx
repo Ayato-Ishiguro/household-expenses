@@ -1,11 +1,11 @@
 import { useForm } from "@inertiajs/react";
 import { useRef, useState } from "react";
-import DangerButton from "resources/js/Components/DangerButton";
-import InputError from "resources/js/Components/InputError";
-import InputLabel from "resources/js/Components/InputLabel";
-import Modal from "resources/js/Components/Modal";
-import SecondaryButton from "resources/js/Components/SecondaryButton";
-import TextInput from "resources/js/Components/TextInput";
+import DangerButton from "@/components/DangerButton";
+import InputError from "@/components/InputError";
+import InputLabel from "@/components/InputLabel";
+import Modal from "@/components/Modal";
+import SecondaryButton from "@/components/SecondaryButton";
+import TextInput from "@/components/TextInput";
 
 export default function DeleteUserForm({ className = "" }) {
     const [confirmingUserDeletion, setConfirmingUserDeletion] = useState(false);

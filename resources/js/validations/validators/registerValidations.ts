@@ -1,8 +1,8 @@
-import { Labels } from "@/Labels/types";
+import { Labels } from "@/labels/types";
 import {
     getRegisterSchema,
     RegisterForm,
-} from "@/Validations/schemas/registerSchema";
+} from "@/validations/schemas/registerSchema";
 
 export function validateRegisterForm(
     data: RegisterForm,

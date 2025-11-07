@@ -9,9 +9,9 @@
         "skipLibCheck": true,
         "allowJs": true,
         "moduleResolution": "node",
-        "baseUrl": "./resources/js",
+        "baseUrl": ".",
         "paths": {
-            "@/*": ["*"]
+            "@/*": ["resources/js/*"]
         },
         "noEmit": true
     },

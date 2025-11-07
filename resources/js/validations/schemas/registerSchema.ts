@@ -1,12 +1,12 @@
 import { z } from "zod";
-import { commonValidationsEn } from "@/Labels/common/commonValidation.en";
-import { commonValidations } from "@/Labels/common/commonValidation.ja";
-import { Labels } from "@/Labels/types";
+import { commonValidationsEn } from "@/labels/common/commonValidation.en";
+import { commonValidations } from "@/labels/common/commonValidation.ja";
+import { Labels } from "@/labels/types";
 import {
     kanaRegex,
     emailRegex,
     strongPasswordRegex,
-} from "@/Validations/utils/regex";
+} from "@/validations/utils/regex";
 
 export type RegisterForm = {
     lastName: string;

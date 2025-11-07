@@ -1,13 +1,14 @@
-import InputError from "@/Components/InputError";
-import InputLabel from "@/Components/InputLabel";
-import PrimaryButton from "@/Components/PrimaryButton";
-import TextInput from "@/Components/TextInput";
-import GuestLayout from "@/Layouts/GuestLayout";
 import { Head, Link, useForm } from "@inertiajs/react";
 import { useState } from "react";
-import { validateRegisterForm } from "@/validations/registerValidation";
-import ja from "@/labels/Auth/ja";
-import en from "@/labels/Auth/en";
+import InfoTooltip from "@/components/common/InfoTooltip";
+import InputError from "@/components/InputError";
+import InputLabel from "@/components/InputLabel";
+import PrimaryButton from "@/components/PrimaryButton";
+import TextInput from "@/components/TextInput";
+import en from "@/labels/auth/en";
+import ja from "@/labels/auth/ja";
+import GuestLayout from "@/layouts/GuestLayout";
+import { validateRegisterForm } from "@/validations/validators/registerValidations";
 
 const initialForm = {
     lastName: "",
@@ -37,24 +38,11 @@ export default function Register() {
     const [clientErrors, setClientErrors] = useState({});
     const [touched, setTouched] = useState(initialTouched);
 
-    const isFormValid =
-        (
-            (lang === "ja"
-                ? Object.values(data).every((v) => v && v.length > 0)
-                : ["lastName", "firstName", "email", "password", "passwordConfirmation"].every(
-                      (field) => data[field] && data[field].length > 0
-                  )
-            )
-        ) &&
-        Object.keys(clientErrors).length === 0;
+    const validationErrors = validateRegisterForm(data, labels.register, lang);
+    const isFormValid = Object.keys(validationErrors).length === 0;
 
     const submit = (e) => {
         e.preventDefault();
-        const validationErrors = validateRegisterForm(
-            data,
-            labels.register,
-            lang
-        );
         setClientErrors(validationErrors);
         if (Object.keys(validationErrors).length > 0) return;
 
@@ -95,6 +83,7 @@ export default function Register() {
                                 setData("lastName", e.target.value)
                             }
                             onBlur={() => handleBlur("lastName")}
+                            placeholder={lang === "ja" ? "山田" : "John"}
                             required
                         />
                         <InputError
@@ -119,6 +108,7 @@ export default function Register() {
                                 setData("firstName", e.target.value)
                             }
                             onBlur={() => handleBlur("firstName")}
+                            placeholder={lang === "ja" ? "太郎" : "Doe"}
                             required
                         />
                         <InputError
@@ -147,6 +137,7 @@ export default function Register() {
                                     setData("lastNameKana", e.target.value)
                                 }
                                 onBlur={() => handleBlur("lastNameKana")}
+                                placeholder={"ヤマダ"}
                                 required
                             />
                             <InputError
@@ -173,6 +164,7 @@ export default function Register() {
                                     setData("firstNameKana", e.target.value)
                                 }
                                 onBlur={() => handleBlur("firstNameKana")}
+                                placeholder={"タロウ"}
                                 required
                             />
                             <InputError
@@ -199,6 +191,7 @@ export default function Register() {
                         autoComplete="username"
                         onChange={(e) => setData("email", e.target.value)}
                         onBlur={() => handleBlur("email")}
+                        placeholder={"sample@test.com"}
                         required
                     />
 
@@ -209,10 +202,15 @@ export default function Register() {
                 </div>
 
                 <div className="mt-4">
-                    <InputLabel
-                        htmlFor="password"
-                        value={labels.register.password}
-                    />
+                    <div className="flex items-center">
+                        <InputLabel
+                            htmlFor="password"
+                            value={labels.register.password}
+                        />
+                        <InfoTooltip
+                            message={labels.register.passwordStrongDescription}
+                        />
+                    </div>
 
                     <TextInput
                         id="password"

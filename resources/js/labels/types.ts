@@ -18,5 +18,6 @@ export type Labels = {
         passwordConfirmation: string;
         alreadyRegistered: string;
         register: string;
+        passwordStrongDescription: string;
     };
 };

@@ -8,9 +8,10 @@
         "forceConsistentCasingInFileNames": true,
         "skipLibCheck": true,
         "allowJs": true,
-        "baseUrl": "./resources/js",
+        "moduleResolution": "node",
+        "baseUrl": ".",
         "paths": {
-            "@/*": ["*"]
+            "@/*": ["resources/js/*"]
         },
         "noEmit": true
     },

@@ -1,4 +1,4 @@
-import { Labels } from "../types";
+import { Labels } from "@/labels/types";
 
 const ja: Labels = {
     login: {
@@ -20,6 +20,8 @@ const ja: Labels = {
         passwordConfirmation: "パスワード（確認用）",
         alreadyRegistered: "すでに登録済みですか？",
         register: "登録",
+        passwordStrongDescription:
+            "パスワードは8文字以上で、英大文字・小文字・数字・記号を含めてください。",
     },
 };
 

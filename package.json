@@ -6,7 +6,8 @@
         "build": "vite build",
         "dev": "vite",
         "lint": "eslint .",
-        "test": "jest --passWithNoTests"
+        "test": "jest --passWithNoTests",
+        "typecheck": "tsc --noEmit"
     },
     "devDependencies": {
         "@babel/eslint-parser": "^7.28.5",

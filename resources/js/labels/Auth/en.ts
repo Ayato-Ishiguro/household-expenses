@@ -1,4 +1,4 @@
-import { Labels } from "../types";
+import { Labels } from "@/labels/types";
 
 const en: Labels = {
     login: {
@@ -18,6 +18,8 @@ const en: Labels = {
         passwordConfirmation: "Confirm Password",
         alreadyRegistered: "Already registered?",
         register: "Register",
+        passwordStrongDescription:
+            "Password must be at least 8 characters and include uppercase letters, lowercase letters, numbers, and symbols.",
     },
 };
 

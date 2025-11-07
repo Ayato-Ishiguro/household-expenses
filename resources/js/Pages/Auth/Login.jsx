@@ -1,11 +1,11 @@
-import Checkbox from "@/Components/Checkbox";
-import InputError from "@/Components/InputError";
-import InputLabel from "@/Components/InputLabel";
-import PrimaryButton from "@/Components/PrimaryButton";
-import TextInput from "@/Components/TextInput";
-import GuestLayout from "@/Layouts/GuestLayout";
 import { Head, Link, useForm } from "@inertiajs/react";
-import { labels } from "@/Labels";
+import Checkbox from "resources/js/Components/Checkbox";
+import InputError from "resources/js/Components/InputError";
+import InputLabel from "resources/js/Components/InputLabel";
+import PrimaryButton from "resources/js/Components/PrimaryButton";
+import TextInput from "resources/js/Components/TextInput";
+import { labels } from "resources/js/Labels";
+import GuestLayout from "resources/js/Layouts/GuestLayout";
 
 export default function Login({ status, canResetPassword }) {
     const { data, setData, post, processing, errors, reset } = useForm({

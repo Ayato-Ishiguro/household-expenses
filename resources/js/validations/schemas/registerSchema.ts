@@ -1,7 +1,7 @@
 import { z } from "zod";
-import { Labels } from "@/Labels/types";
-import { commonValidations } from "@/Labels/common/commonValidation.ja";
 import { commonValidationsEn } from "@/Labels/common/commonValidation.en";
+import { commonValidations } from "@/Labels/common/commonValidation.ja";
+import { Labels } from "@/Labels/types";
 import { kanaRegex, emailRegex, strongPasswordRegex } from "../utils/regex";
 
 export type RegisterForm = {

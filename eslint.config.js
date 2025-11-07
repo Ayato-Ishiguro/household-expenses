@@ -48,6 +48,12 @@ export default [
                         "sibling",
                         "index",
                     ],
+                    pathGroups: [
+                        {
+                            pattern: "@/**",
+                            group: "internal",
+                        },
+                    ],
                     alphabetize: { order: "asc", caseInsensitive: true },
                 },
             ],
@@ -96,6 +102,12 @@ export default [
                         "sibling",
                         "index",
                     ],
+                    pathGroups: [
+                        {
+                            pattern: "@/**",
+                            group: "internal",
+                        },
+                    ],
                     alphabetize: { order: "asc", caseInsensitive: true },
                 },
             ],
@@ -134,6 +146,12 @@ export default [
                         "parent",
                         "sibling",
                         "index",
+                    ],
+                    pathGroups: [
+                        {
+                            pattern: "@/**",
+                            group: "internal",
+                        },
                     ],
                     alphabetize: { order: "asc", caseInsensitive: true },
                 },
